@@ -10,9 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private Environment env;
 
@@ -23,22 +25,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return SecurityUtility.passwordEncoder();
     }
 
-    private static final String[] PUBLIC_MATCHES = {
+    private static final String[] PUBLIC_MATCHERS = {
             "/css/**",
             "/js/**",
             "/image/**",
             "/book/**",
-            "/user/**",
+            "/user/**"
     };
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().disable().httpBasic().and().authorizeRequests()
-                .antMatchers(PUBLIC_MATCHES).permitAll().anyRequest().authenticated();
+                .antMatchers(PUBLIC_MATCHERS).permitAll().anyRequest().authenticated();
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
     }
+	
 }
