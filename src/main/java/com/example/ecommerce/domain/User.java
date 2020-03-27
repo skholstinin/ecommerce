@@ -40,7 +40,7 @@ public class User implements UserDetails, Serializable {
     private String phone;
     private boolean enabled = true;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", /*cascade = CascadeType.ALL,*/ fetch = FetchType.EAGER)
     @JsonIgnore
     private Set<UserRole> userRoles = new HashSet<>();
 
