@@ -45,8 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userSecurityService).passwordEncoder(passwordEncoder());
     }
 
-    @Bean
-    public HttpSessionStrategy httpSessionStrategy() {
-        return new HeaderHttpSessionStrategy();
-    }
+//    @Bean
+//    public HttpSessionStrategy httpSessionStrategy() {
+//        return new HeaderHttpSessionStrategy();
+//    }
 }
