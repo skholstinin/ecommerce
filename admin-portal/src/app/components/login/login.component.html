@@ -1,0 +1,48 @@
+<div class="container">
+  <div [hidden]="loggedIn">
+
+    <mat-grid-list cols="6">
+      <form #form='ngForm' (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="text" class="form-control form-control-lg" id="email" name="email" placeholder="Enter email"
+                 required autofocus [(ngModel)]="credential.username" #email="ngModel" autocomplete="email">
+          <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control form-control-lg" id="password" name="password"
+                 autocomplete="password"
+                 placeholder="Password" required [(ngModel)]="credential.password" #password='ngModel'>
+          <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+            Email is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button [disabled]="!form.form.valid" type="submit" class="btn btn-lg btn-primary btn-block">Sign In</button>
+        </div>
+      </form>
+      <!--&lt;!&ndash;            <mat-grid-tile [colspan]="4">&ndash;&gt;-->
+      <!--&lt;!&ndash;              <form (ngSubmit)="onSubmit()">&ndash;&gt;-->
+      <!--&lt;!&ndash;                <mat-form-field class="full-width">&ndash;&gt;-->
+      <!--&lt;!&ndash;                  <input type="text" matInput[(ngModel)]="credential.username" name="username" id='&ndash;&gt;-->
+      <!--&lt;!&ndash;                  username' placeholder="Your Username">&ndash;&gt;-->
+      <!--&lt;!&ndash;                </mat-form-field>&ndash;&gt;-->
+      <!--&lt;!&ndash;                <mat-form-field class="full-width">&ndash;&gt;-->
+      <!--&lt;!&ndash;                  <input type="password" matInput[(ngModel)]="credential.password" name="username" id='&ndash;&gt;-->
+      <!--&lt;!&ndash;                  password' placeholder="Your Password">&ndash;&gt;-->
+      <!--&lt;!&ndash;                </mat-form-field>&ndash;&gt;-->
+      <!--&lt;!&ndash;                <button mat-raised-button type="submit" class="mat-primary">&ndash;&gt;-->
+      <!--&lt;!&ndash;                Login</button>&ndash;&gt;-->
+      <!--              </form>-->
+      <!--            </mat-grid-tile>-->
+    </mat-grid-list>
+  </div>
+  <div [hidden]="!loggedIn">
+    <h2>You have logged in!</h2>
+  </div>
+</div>
